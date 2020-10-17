@@ -17,8 +17,10 @@ public class Bot extends TelegramLongPollingBot {
     @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
+        String user_info = update.getMessage().getText();
         var cityName = update.getMessage().getText();
         System.out.println("City name: " + cityName);
+        System.out.println(update.toString());
 
         var service = new WeatherServiceImpl();
 
@@ -32,7 +34,7 @@ public class Bot extends TelegramLongPollingBot {
         firstkeyboardRow.add("Hi");
 
         KeyboardRow firstkeyboardRow3 = new KeyboardRow();
-        firstkeyboardRow.add("Привіт!");
+        firstkeyboardRow.add("Hello!");
 
         KeyboardRow firstkeyboardRow2 = new KeyboardRow();
         firstkeyboardRow.add("Hey");
@@ -53,15 +55,15 @@ public class Bot extends TelegramLongPollingBot {
 
     }
 
-//    @SneakyThrows
-//    public synchronized void sendMsg(String chatId, String msg) {
-//        var sendMessage = new SendMessage();
-//        sendMessage.enableMarkdown(true);
-//        sendMessage.setChatId(chatId);
-//        sendMessage.setText(msg);
-//
-//        execute(sendMessage);
-//    }
+    @SneakyThrows
+    public synchronized void sendMsg(String chatId, String msg) {
+        var sendMessage = new SendMessage();
+        sendMessage.enableMarkdown(true);
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(msg);
+
+        execute(sendMessage);
+    }
 
     @Override
     public String getBotUsername() {

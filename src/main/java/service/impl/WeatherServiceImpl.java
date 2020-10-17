@@ -1,6 +1,7 @@
 package service.impl;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.SneakyThrows;
 import model.Weather;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,22 +12,19 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
+
 
 import static service.ApiConstants.*;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
-    @Value("${api.key}")
-    private String apiKey;
-
-
     @SneakyThrows
     public String getByCityName(String city) {
-        validateCityName(city);
 
-        var gson = new Gson();
+
+        var gson = new GsonBuilder().setPrettyPrinting().create();
+
 
         var httpClient = HttpClient.newBuilder()
                 .build();
@@ -55,5 +53,9 @@ public class WeatherServiceImpl implements WeatherService {
         Weather[] data;
 
     }
+
+    @Value("${api.key}")
+    private String apiKey;
+
 }
 

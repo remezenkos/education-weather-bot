@@ -1,8 +1,5 @@
 package service;
-
 import exceptions.IncorrectCityNameException;
-import model.Weather;
-
 import static service.ApiConstants.CITY_REGEX;
 
 public interface WeatherService {
@@ -14,4 +11,5 @@ public interface WeatherService {
 //        }
 
     }
+
 }
